@@ -11,7 +11,7 @@ import com.google.common.base.Strings;
 import java.util.UUID;
 
 @Entity(tableName = "task")
-public class TaskEntity {
+public final class TaskEntity{
 
     @PrimaryKey
     @NonNull
@@ -27,6 +27,20 @@ public class TaskEntity {
     @NonNull
     private final boolean mCompleted;
 
+    @NonNull
+    public String getId() {
+        return mId;
+    }
+
+    @NonNull
+    public String getTitle() {
+        return mTitle;
+    }
+
+    @NonNull
+    public String getDescription() {
+        return mDescription;
+    }
 
     public TaskEntity(@NonNull String mId, @NonNull String mTitle, @NonNull String mDescription, @NonNull boolean mCompleted) {
         this.mId = mId;
@@ -50,23 +64,9 @@ public class TaskEntity {
         this(UUID.randomUUID().toString(),mTitle,mDescription,mCompleted);
     }
 
-    @NonNull
-    public String getmId() {
-        return mId;
-    }
 
     @NonNull
-    public String getmTitle() {
-        return mTitle;
-    }
-
-    @NonNull
-    public String getmDescription() {
-        return mDescription;
-    }
-
-    @NonNull
-    public boolean ismCompleted() {
+    public boolean isCompleted() {
         return mCompleted;
     }
 

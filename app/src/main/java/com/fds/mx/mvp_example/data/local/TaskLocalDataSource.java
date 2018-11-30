@@ -15,7 +15,6 @@ import javax.annotation.CheckForNull;
 
 public class TaskLocalDataSource implements TaskDataSource {
 
-
     private static volatile TaskLocalDataSource INSTANCE;
     AppExecutors appExecutors;
     private TaskDao taskDao;
@@ -98,7 +97,7 @@ public class TaskLocalDataSource implements TaskDataSource {
         Runnable updateRunable = new Runnable() {
             @Override
             public void run() {
-                taskDao.updateTaskComplete(task.getmId(),true);
+                taskDao.updateTaskComplete(task.getId(),true);
             }
         };
         appExecutors.diskIO().execute(updateRunable);
@@ -114,7 +113,7 @@ public class TaskLocalDataSource implements TaskDataSource {
         Runnable activateRunnable = new Runnable() {
             @Override
             public void run() {
-                taskDao.updateTaskComplete(task.getmId(),false);
+                taskDao.updateTaskComplete(task.getId(),false);
             }
         };
         appExecutors.diskIO().execute(activateRunnable);
@@ -123,11 +122,10 @@ public class TaskLocalDataSource implements TaskDataSource {
     @Override
     public void activateTask(String taskId) {
 
-
     }
 
     @Override
-    public void clearCompleteTask() {
+    public void clearCompletedTasks() {
         Runnable deleteRunnable = new Runnable() {
             @Override
             public void run() {
@@ -139,12 +137,12 @@ public class TaskLocalDataSource implements TaskDataSource {
     }
 
     @Override
-    public void refreshTask() {
+    public void refreshTasks() {
 
     }
 
     @Override
-    public void deleteAllTask() {
+    public void deleteAllTasks() {
         Runnable deleteAllRunnable = new Runnable() {
             @Override
             public void run() {

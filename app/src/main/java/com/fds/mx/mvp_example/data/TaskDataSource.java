@@ -23,8 +23,8 @@ public interface TaskDataSource {
     void completeTask(String TaskId);
     void activateTask(TaskEntity task);
     void activateTask(String taskId);
-    void clearCompleteTask();
-    void refreshTask();
-    void deleteAllTask();
+    void clearCompletedTasks();
+    void refreshTasks();
+    void deleteAllTasks();
     void deleteTask(String taskId);
 }
